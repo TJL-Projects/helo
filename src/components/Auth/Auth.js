@@ -26,7 +26,7 @@ class Auth extends Component{
                     </div>
                     <div id='helo-title'>Helo</div>
                     <div className='inputs-container'>
-                        <div className='username' className='auth-input'>
+                        <div className='auth-input'>
                             <span>Username: </span>
                             <input 
                                 name='username' 
@@ -34,7 +34,7 @@ class Auth extends Component{
                                 onChange={e => this.handleChange(e)}
                             />
                         </div>
-                        <div className='password' className='auth-input'>
+                        <div className='auth-input'>
                             <span>Password:</span>
                             <input 
                                 name='password' 
