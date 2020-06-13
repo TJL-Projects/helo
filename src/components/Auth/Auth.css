@@ -2,4 +2,50 @@
     height:100vh;
     width: 100%;
     background: linear-gradient(270deg, rgba(254,182,93,0.8099614845938375) 52%, rgb(252, 114, 155) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container{
+    position: relative;
+    height:55vh;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.404);
+    box-sizing: border-box;
+}
+
+#helo-title{
+    margin: 10px 0;
+    color: white;
+    font-size: 80px;
+    font-weight: 700;
+}
+
+.auth-input{
+    margin: 35px 0;
+    color: white;
+    font-weight: 600;
+    font-size: 18px
+}
+
+.auth-btn{
+    color: white;
+    height:35px;
+    background: radial-gradient(circle, rgb(44, 44, 44) 1%, rgba(27, 27, 27, 0.842) 73%);
+}
+
+#login-btn{
+    width: 70px;
+    margin: 0 20px;
+}
+
+#register-btn{
+    width: 80px;
+    margin: 0 20px;
 }
