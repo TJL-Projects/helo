@@ -1,0 +1,43 @@
+.navbar{
+    position: absolute;
+    left: 0;
+    height: 100vh;
+    width: 100px;
+    background: linear-gradient(180deg, rgba(254,182,93,0.8099614845938375) 0%, rgba(249,133,246,1) 100%, rgba(80,80,80,1) 100%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px 0;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.404)
+}
+
+.img-container{
+    position: relative;
+    background-color: rgb(205, 238, 138);
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.404)
+}
+
+.links {
+    position: relative;
+    top: 25px;
+}
+
+.link{
+    height: 60px;
+    margin-top: 20px;
+}
+
+.logout{
+    position: absolute;
+    bottom: 25px;
+}
+
+.logout-btn{
+    height: 60px;
+}
