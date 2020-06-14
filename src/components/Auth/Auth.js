@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 import './Auth.css'
+import axios from 'axios'
+import {connect} from 'react-redux'
+import {setUser} from '../../ducks/userReducer'
+
 
 class Auth extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             username: '',
             password: ''
@@ -15,6 +19,39 @@ class Auth extends Component{
             [e.target.name]: e.target.value
         })
         // console.log(this.state)
+    }
+
+    register = () => {
+        const {username, password} = this.state
+
+        if(password !== ''){
+
+            axios.post('/auth/register', {username, password})
+            .then( res => {
+                this.props.setUser(res.data)
+                this.props.history.push('/dashboard')
+            })
+            .catch( err => {
+                console.log(err)
+                alert('Name taken')
+            })
+        } else {
+            alert('Enter a password')
+        }
+    }
+
+    login = () => {
+        const {username, password} = this.state
+        
+        axios.post('/auth/login', {username, password})
+            .then( res => {
+                this.props.setUser(res.data)
+                this.props.history.push('/dashboard')
+            })
+            .catch(err => {
+                console.log(err)
+                alert('Username or password incorrect')
+            })
     }
 
     render(){
@@ -40,12 +77,21 @@ class Auth extends Component{
                                 name='password' 
                                 value={this.state.password} 
                                 onChange={e => this.handleChange(e)} 
+                                type='password'
                             />
                         </div>
                     </div>
                     <div className='btns-container'>
-                        <button id='login-btn' className='auth-btn'>Login</button>
-                        <button id='register-btn' className='auth-btn'>Register</button>
+                        <button 
+                            id='login-btn' 
+                            className='auth-btn'
+                            onClick={this.login}
+                        >Login</button>
+                        <button 
+                            id='register-btn' 
+                            className='auth-btn'
+                            onClick={this.register}                        
+                        >Register</button>
                     </div>
                 </div>
             </div>
@@ -53,4 +99,4 @@ class Auth extends Component{
     }
 }
 
-export default Auth
+export default connect(null, {setUser})(Auth);
