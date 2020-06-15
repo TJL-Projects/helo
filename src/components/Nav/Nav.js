@@ -1,8 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {setUser} from '../../ducks/userReducer'
+
 import './Nav.css'
 
-function Nav(){
+function Nav(props){
     return(
         <div className='navbar'>
             <div className='user-info'>
@@ -10,6 +13,7 @@ function Nav(){
                     Profile Img
                 </div>
                 Username
+                {console.log(props)}
             </div>
             <div className='links'>
                 <Link to='/dashboard'>
@@ -28,4 +32,6 @@ function Nav(){
     )
 }
 
-export default Nav
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps, {setUser})(Nav);
