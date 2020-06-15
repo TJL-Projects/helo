@@ -50,5 +50,36 @@ module.exports = {
         //   delete user[0].password
 
           res.status(200).send(user)
+      },
+
+      getPosts: async (req, res) => {
+          const db = req.app.get('db')
+
+          const {userPosts, searchInput} = req.query
+          const {user_id} = req.session
+
+          if (userPosts === 'true' && searchInput !== '') {
+            let posts =  await db.post.get_posts(+user_id);
+            let filterPost = posts.filter(e => e.title.includes(searchInput));
+            return res.status(200).send(filterPost)
+         } 
+         if (userPosts === 'false' && searchInput === '') {
+            let allPosts = await db.post.get_all_posts();
+            let filtered = allPosts.filter(e => (e.author_id !== +user_id)? e : null)
+            return res.status(200).send(filtered)
+         } 
+         if (userPosts === 'false' && searchInput !== '') {
+            let postAll = await db.post.get_all_posts();
+            // console.log(postAll)
+            let userPost = postAll.filter(e => (e.author_id !== +user_id)? e : null);
+            // console.log(userPost)
+            let postsFiltered = userPost.filter(e => e.title.includes(searchInput));
+            return res.status(200).send(postsFiltered); 
+         }
+         if (userPosts === 'true' && searchInput === '') {
+            let getAllPosts = await db.post.get_all_posts();
+            // console.log('hello')
+            return res.status(200).send(getAllPosts);
+         }
       }
 }
