@@ -8,4 +8,4 @@ values(
    ${password},
    ${profile_pic}
 ) 
-returning id, username, profile_pic;
+returning user_id, username, profile_pic;
