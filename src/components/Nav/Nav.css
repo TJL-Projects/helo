@@ -41,3 +41,10 @@
 .logout-btn{
     height: 60px;
 }
+
+.user-img{
+    position: relative;
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 100px;
+}

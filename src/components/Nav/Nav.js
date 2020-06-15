@@ -1,19 +1,40 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setUser} from '../../ducks/userReducer'
 
 import './Nav.css'
+import axios from 'axios'
 
-function Nav(props){
-    return(
-        <div className='navbar'>
+class Nav extends Component{
+    constructor(props){
+        super()
+        this.state ={
+
+        }
+    }
+
+    componentDidMount(){
+        this.getUser()
+    }
+
+    getUser = () => {
+        axios.get('/auth/me')
+        .then(res => {
+            this.props.setUser(res.data[0])
+        })
+    }
+
+    render(){
+
+        return(
+            <div className='navbar'>
             <div className='user-info'>
                 <div className='img-container'>
-                    Profile Img
+                    <img className='user-img' alt={this.props.users.username} src={this.props.users.profile_pic}/>
                 </div>
-                Username
-                {console.log(props)}
+                {this.props.users.username}
+                {console.log(this.props)}
             </div>
             <div className='links'>
                 <Link to='/dashboard'>
@@ -30,6 +51,7 @@ function Nav(props){
             </div>
         </div>
     )
+}
 }
 
 const mapStateToProps = reduxState => reduxState;

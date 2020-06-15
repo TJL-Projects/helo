@@ -38,5 +38,17 @@ module.exports = {
           delete user[0].password
           req.session.user = user[0]
           res.status(202).send(req.session.user)
+      },
+
+      userInfo: async (req, res) => {
+          const db = req.app.get('db')
+          const {user_id} = req.session
+          
+          let user = await db.auth.get_user(user_id)
+
+          console.log(req.session)
+        //   delete user[0].password
+
+          res.status(200).send(user)
       }
 }
