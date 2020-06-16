@@ -52,7 +52,7 @@ class Dashboard extends Component{
             return(
                 <div className='post-container' key={index}>
                     <h1 className='post-title'>{element.title}</h1>
-                    <span className='post-author'>{element.username}</span>
+                    <span className='post-author'>Posted by: {element.username}</span>
                     <img className='post-img' src={element.profile_pic} alt={element.title} />
                 </div>
             )
