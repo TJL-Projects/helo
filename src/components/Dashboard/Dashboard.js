@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {connect} from 'react-redux'
+import {setUser} from '../../ducks/userReducer'
 
 import './Dashboard.css'
 
@@ -41,16 +43,17 @@ class Dashboard extends Component{
             this.setState({
                 posts: res.data
             })
-            console.log(res.data)
+            // console.log(res.data)
         })
     }
 
     render(){
         const mappedPosts = this.state.posts.map((element, index) => {
             return(
-                <div key={index}>
-                    <h1>{element.username}</h1>
-                    <img className='post-img' src={element.img} alt={element.title} />
+                <div className='post-container' key={index}>
+                    <h1 className='post-title'>{element.title}</h1>
+                    <span className='post-author'>{element.username}</span>
+                    <img className='post-img' src={element.profile_pic} alt={element.title} />
                 </div>
             )
         })
@@ -58,24 +61,33 @@ class Dashboard extends Component{
         return(
             <div className='dash-component'>
                 <div className='search-container'>
-                    <input 
-                        type='search' 
-                        name='searchInput'
-                        value={this.state.search}
-                        placeholder='Search by title'
-                        onChange={e => this.handleChange(e)}
-                    />
+                    <div className='search-input-container'>
+                        <input 
+                            className='search-input'
+                            type='search' 
+                            name='searchInput'
+                            value={this.state.search}
+                            placeholder='Search by title'
+                            onChange={e => this.handleChange(e)}
+                            />
                     <button className='search-btn'>Search</button>
-                    <span>My Posts:</span>
-                    <input
-                        type='checkbox'
-                        onChange={this.handleToggle}
-                    />
+                    </div>
+                    <div>
+                        <span>My Posts:</span>
+                        <input
+                            type='checkbox'
+                            onChange={this.handleToggle}
+                        />
+                    </div>
                 </div>
-                {mappedPosts}
+                <div className='posts-container'>
+                    {mappedPosts}
+                </div>
             </div>
         )
     }
 }
 
-export default Dashboard
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps, {setUser})(Dashboard);

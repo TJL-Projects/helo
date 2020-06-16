@@ -13,7 +13,7 @@ module.exports = {
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(password, salt);
     
-        let newUser = await db.auth.register_user({
+        let [newUser] = await db.auth.register_user({
           username,
           password: hash,
           profile_pic: `https://robohash.org/${username}`
@@ -35,7 +35,9 @@ module.exports = {
           if(!authenticated) {
               return res.status(401).send('Username or password incorrect')
           }
+
           delete user[0].password
+
           req.session.user = user[0]
           res.status(202).send(req.session.user)
       },

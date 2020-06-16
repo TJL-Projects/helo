@@ -6,6 +6,7 @@ const initialState = {
 }
 
 const SET_USER = 'SET_USER'
+// const GET_USER = 'GET_USER'
 
 
 export function setUser(userObj) {
@@ -15,6 +16,14 @@ export function setUser(userObj) {
     }
 }
 
+// export default function getUser(){
+//     const user = axios.get('auth/user')
+
+//     return{
+//         type: GET_USER,
+//         payload: user
+//     }
+// }
 
 
 export default function reducer(state = initialState, action) {
@@ -22,6 +31,12 @@ export default function reducer(state = initialState, action) {
     switch(type) {
         case SET_USER:
             return {...state, ...payload}
+        // case GET_USER + "_PENDING":
+        //     return state
+        // case GET_USER + "_RESOLVED":
+        //     return {...state, uyser: action.payload.data, isLoggedIn: true}
+        // case GET_USER + "_REJECTED":
+        //     return initialState
         default:
             return state
     }
