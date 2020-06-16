@@ -18,6 +18,7 @@ class Dashboard extends Component{
 
     componentDidMount(){
         this.getPosts()
+
     }
 
     handleChange = (e) => {
@@ -32,26 +33,33 @@ class Dashboard extends Component{
         this.setState({
             userPosts: !this.state.userPosts
         })
-        console.log(this.state)
+
+        setTimeout(function(){
+            this.getPosts()
+        }.bind(this), 1000)
+        
+    }
+
+    resetSearch = () => {
+        this.setState({
+            searchInput: ''
+        }, () => console.log(this.state))
     }
 
     handleSearch = () => {
-        let ifTrue = false;
-        if (this.state.userPosts === true){
-           ifTrue = true;
-        }
-        axios.get(`/api/posts/?userPosts=${ifTrue}&&searchInput=${this.state.searchInput}`)
+
+        axios.get(`/api/posts/?userPosts=${this.state.userPosts}&&searchInput=${this.state.searchInput}`)
         .then(res => {
            this.setState({
-              posts: res.data,
-              searchInput: ''
-              
+              posts: res.data              
            })
         })
     }
 
     getPosts = () => {
         const {searchInput, userPosts} = this.state
+
+        // console.log(`/api/posts/?userPosts=${userPosts}&searchInput=${searchInput}`)
 
         axios.get(`/api/posts/?userPosts=${userPosts}&searchInput=${searchInput}`)
         .then(res => {
@@ -83,7 +91,7 @@ class Dashboard extends Component{
                             className='search-input'
                             type='search' 
                             name='searchInput'
-                            value={this.state.search}
+                            value={this.state.searchInput}
                             placeholder='Search by title'
                             onChange={e => this.handleChange(e)}
                             />
@@ -93,11 +101,16 @@ class Dashboard extends Component{
                     >Search</button>
                     </div>
                     <div>
+                        <button className='reset-btn'
+                        onClick={this.resetSearch}
+                        >Reset</button>
+                    </div>
+                    <div>
                         <span>My Posts:</span>
                         <input
-                            type='checkbox'
-                            onClick={this.handleToggle}
-                            onChange={() => this.componentDidMount}
+                            type='checkbox' 
+                            checked={this.state.userPosts}                              
+                            onChange={this.handleToggle}
                         />
                     </div>
                 </div>

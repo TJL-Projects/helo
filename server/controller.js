@@ -43,22 +43,20 @@ module.exports = {
       },
 
       userInfo: async (req, res) => {
-          const db = req.app.get('db')
-          const {user_id} = req.session
-          
-          let user = await db.auth.get_user(user_id)
-
-          console.log(req.session)
-        //   delete user[0].password
-
-          res.status(200).send(user)
+        if (req.session.user) {
+            res.status(200).send(req.session.user)
+        } else {
+            res.sendStatus(404)
+        }
       },
 
       getPosts: async (req, res) => {
           const db = req.app.get('db')
 
           const {userPosts, searchInput} = req.query
-          const {user_id} = req.session
+          const {user_id} = req.session.user
+
+        console.log(req.session)
 
           if (userPosts === 'true' && searchInput !== '') {
             let posts =  await db.post.get_posts(+user_id);

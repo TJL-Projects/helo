@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {setUser} from '../../ducks/userReducer'
+import {setUser, getUser} from '../../ducks/userReducer'
 
 import './Nav.css'
-import axios from 'axios'
+// import axios from 'axios'
 
 class Nav extends Component{
     constructor(props){
@@ -15,15 +15,15 @@ class Nav extends Component{
     }
 
     componentDidMount(){
-        this.getUser()
+        this.props.getUser()
     }
 
-    getUser = () => {
-        axios.get('/auth/me')
-        .then(res => {
-            this.props.setUser(res.data[0])
-        })
-    }
+    // getUser = () => {
+    //     axios.get('/auth/me')
+    //     .then(res => {
+    //         this.props.setUser(res.data[0])
+    //     })
+    // }
 
     render(){
 
@@ -56,4 +56,4 @@ class Nav extends Component{
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps, {setUser})(Nav);
+export default connect(mapStateToProps, {setUser, getUser})(Nav);
