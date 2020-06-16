@@ -73,6 +73,7 @@ module.exports = {
          if (userPosts === 'false' && searchInput !== '') {
             let postAll = await db.post.get_all_posts();
             // console.log(postAll)
+            // console.log(+user_id)
             let userPost = postAll.filter(e => (e.author_id !== +user_id)? e : null);
             // console.log(userPost)
             let postsFiltered = userPost.filter(e => e.title.includes(searchInput));

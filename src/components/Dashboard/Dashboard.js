@@ -28,11 +28,26 @@ class Dashboard extends Component{
     }
 
     handleToggle = () => {
-        const {userPosts} = this.state
+        
         this.setState({
-            userPosts: !userPosts
+            userPosts: !this.state.userPosts
         })
         console.log(this.state)
+    }
+
+    handleSearch = () => {
+        let ifTrue = false;
+        if (this.state.userPosts === true){
+           ifTrue = true;
+        }
+        axios.get(`/api/posts/?userPosts=${ifTrue}&&searchInput=${this.state.searchInput}`)
+        .then(res => {
+           this.setState({
+              posts: res.data,
+              searchInput: ''
+              
+           })
+        })
     }
 
     getPosts = () => {
@@ -46,6 +61,8 @@ class Dashboard extends Component{
             // console.log(res.data)
         })
     }
+
+
 
     render(){
         const mappedPosts = this.state.posts.map((element, index) => {
@@ -70,13 +87,17 @@ class Dashboard extends Component{
                             placeholder='Search by title'
                             onChange={e => this.handleChange(e)}
                             />
-                    <button className='search-btn'>Search</button>
+                    <button 
+                        className='search-btn'
+                        onClick={this.handleSearch}
+                    >Search</button>
                     </div>
                     <div>
                         <span>My Posts:</span>
                         <input
                             type='checkbox'
-                            onChange={this.handleToggle}
+                            onClick={this.handleToggle}
+                            onChange={() => this.componentDidMount}
                         />
                     </div>
                 </div>
