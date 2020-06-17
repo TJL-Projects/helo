@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Form.css'
+import axios from 'axios'
 
 class Form extends Component{
     constructor(){
@@ -17,6 +18,15 @@ class Form extends Component{
             [e.target.name]: e.target.value
         })
         console.log(this.state)
+    }
+
+    addPost = () => {
+        const {titleInput, imgInput, contentInput} = this.state
+
+        axios.post('/api/new', {title: titleInput, img: imgInput, content: contentInput})
+            .then(() => {
+                this.props.history.push('/dashboard')
+            })
     }
 
     render(){
@@ -55,7 +65,10 @@ class Form extends Component{
                                 className='post-textarea'
                                 />
                         </div>
-                    <button className='post-btn'>Post</button>
+                    <button 
+                        className='post-btn'
+                        onClick={this.addPost}
+                    >Post</button>
                     </div>
                 </div>
 

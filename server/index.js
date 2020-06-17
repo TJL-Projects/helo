@@ -35,3 +35,5 @@ app.get('/auth/me', ctrl.userInfo)
 
 app.get('/api/posts', ctrl.getPosts)
 app.post('/api/logout', ctrl.logout)
+app.post('/api/new', ctrl.addPost)
+// app.post('/api/post/:post_id', ctrl.getSinglePost)

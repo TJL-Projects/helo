@@ -87,5 +87,20 @@ module.exports = {
       logout: (req, res) => {
           req.session.destroy()
           res.sendStatus(200)
-      }
+      },
+
+      addPost: (req, res) => {
+          const db = req.app.get('db')
+          const {user_id} = req.session.user
+        //   const author_id = 15
+          const {title, img, content} = req.body
+
+          db.post.add_post({title, img, content, author_id: +user_id})
+          res.sendStatus(200)
+
+      },
+
+    //   getSinglePost: (req, res) => {
+
+    //   }
 }
