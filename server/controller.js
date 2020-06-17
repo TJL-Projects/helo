@@ -18,7 +18,8 @@ module.exports = {
           password: hash,
           profile_pic: `https://robohash.org/${username}`
         });
-        req.session.user = newUser[0];
+        req.session.user = newUser;
+        // console.log(newUser)
         res.status(201).send(req.session.user);
       },
 
@@ -100,7 +101,13 @@ module.exports = {
 
       },
 
-    //   getSinglePost: (req, res) => {
+      getSinglePost: async (req, res) => {
+         const db = req.app.get('db')
+         const {id} = req.params
 
-    //   }
+        console.log(id)
+
+         let post = await db.post.get_single_post(+id)
+         res.status(200).send(post)
+      }
 }

@@ -13,6 +13,7 @@ const RESET_USER ='RESET_USER'
 
 
 export function setUser(userObj) {
+    console.log(userObj)
     return {
         type: SET_USER,
         payload: userObj
