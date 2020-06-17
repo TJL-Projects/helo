@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import {setUser} from '../../ducks/userReducer'
+import {Link} from 'react-router-dom'
 
 import './Dashboard.css'
 
@@ -76,7 +77,9 @@ class Dashboard extends Component{
         const mappedPosts = this.state.posts.map((element, index) => {
             return(
                 <div className='post-container' key={index}>
-                    <h1 className='post-title'>{element.title}</h1>
+                    <Link to={`/post/${element.post_id}`}>
+                        <h1 className='post-title'>{element.title}</h1>
+                    </Link>
                     <span className='post-author'>Posted by: {element.username}</span>
                     <img className='post-img' src={element.profile_pic} alt={element.title} />
                 </div>

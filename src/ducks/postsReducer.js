@@ -1,7 +1,6 @@
 // import axios from 'axios'
 
 // const initialState = {
-//     id: 0,
 //     title: '',
 //     img: '',
 //     content: '',

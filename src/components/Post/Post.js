@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './Post.css'
 
 class Post extends Component{
     constructor(){
@@ -18,18 +19,18 @@ class Post extends Component{
         <div className='current-post-main'>
             <div className='current-post-container'>
                 <div className='post-nav'>
-                <span>Title</span>
+                <span id='current-post-title'>Title</span>
                     <div>
-                        <span>username</span>
-                        <span>profile_pic</span>
+                        <span id='post-username'>username</span>
+                        <span id='post-profile_pic'>profile_pic</span>
                     </div>
                 </div>
                 <div className='content-img-container'>
-                    <div>
+                    <div id='current-post-img-container'>
                         img
                     </div>
-                    <div>
-                        content
+                    <div id='current-post-content'>
+                        content sdfasdf asdfasdfasd dasdfasdf asdfasdfas asdfasdfa asdfasdfasd asdfasdfas adfasdfas asdfasdfa asdfasdfas asdfasdfa asdfasdf afasdfasdf asdfasd fafasdfasdf asdfa sa
                     </div>
                 </div>
             </div>
