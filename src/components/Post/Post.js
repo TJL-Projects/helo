@@ -39,11 +39,25 @@ class Post extends Component{
         console.log(this.props)
     }
 
+    editPost = () => {
+
+        axios.put(`/api/post/${this.props.match.params.postid}`, {title: this.state.title})
+        .then(() => {
+            this.props.history.push('/dashboard')
+        })
+    }
+
     toggleEdit = () => {
         this.setState({
             isEditing: !this.state.isEditing
         }, () => console.log(this.state))
     }
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    } 
 
     render(){
 
@@ -53,8 +67,23 @@ class Post extends Component{
             <div className='current-post-container'>
                 <div className='post-nav'>
                     <div>
-                    <span id='current-post-title'>{this.state.title}</span>
-                    <button onClick={this.toggleEdit}>Edit</button>
+                        
+                        {(this.state.isEditing === true) ? 
+                        <div>
+                        <input  
+                        name='title'
+                        value={this.state.title}
+                        onChange={e => this.handleChange(e)}
+                        />
+                        <button onClick={this.editPost}>Submit</button>
+                        </div>
+                        :
+                        <div>
+                            <span id='current-post-title'>{this.state.title}</span>
+                            <button onClick={this.toggleEdit}>Edit</button>
+                        </div>
+                        }
+                        
                     </div>
                     <div>
                         <span id='post-username'>{this.state.username}</span>
