@@ -9,6 +9,7 @@ const initialState = {
 
 const SET_USER = 'SET_USER'
 const GET_USER = 'GET_USER'
+const RESET_USER ='RESET_USER'
 
 
 export function setUser(userObj) {
@@ -24,6 +25,13 @@ export function getUser(){
     return{
         type: GET_USER,
         payload: user
+    }
+}
+
+export function resetUser(){
+    return{
+        type: RESET_USER,
+        payload: initialState
     }
 }
 

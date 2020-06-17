@@ -33,6 +33,10 @@
     margin-top: 20px;
 }
 
+.link:hover{
+    cursor: pointer;
+}
+
 .logout{
     position: absolute;
     bottom: 25px;
@@ -40,6 +44,10 @@
 
 .logout-btn{
     height: 60px;
+}
+
+.logout-btn:hover{
+    cursor: pointer;
 }
 
 .user-img{

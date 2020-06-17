@@ -34,3 +34,4 @@ app.post('/auth/login', ctrl.login)
 app.get('/auth/me', ctrl.userInfo)
 
 app.get('/api/posts', ctrl.getPosts)
+app.post('/api/logout')

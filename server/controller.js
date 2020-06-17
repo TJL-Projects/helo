@@ -82,5 +82,10 @@ module.exports = {
             // console.log('hello')
             return res.status(200).send(getAllPosts);
          }
+      },
+
+      logout: (req, res) => {
+          req.session.destroy()
+          res.sendStatus(200)
       }
 }

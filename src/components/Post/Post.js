@@ -8,13 +8,32 @@ class Post extends Component{
             img: '',
             content: '',
             author: '',
-            authorPicture: ''
+            profile_pic: ''
         }
     }
 
     render(){
+
         return(
-            <div>Post.js</div>
+        <div className='current-post-main'>
+            <div className='current-post-container'>
+                <div className='post-nav'>
+                <span>Title</span>
+                    <div>
+                        <span>username</span>
+                        <span>profile_pic</span>
+                    </div>
+                </div>
+                <div className='content-img-container'>
+                    <div>
+                        img
+                    </div>
+                    <div>
+                        content
+                    </div>
+                </div>
+            </div>
+        </div>
         )
     }
 }

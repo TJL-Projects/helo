@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {setUser, getUser} from '../../ducks/userReducer'
+import {setUser, getUser, resetUser} from '../../ducks/userReducer'
 
 import './Nav.css'
+import axios from 'axios'
 // import axios from 'axios'
 
 class Nav extends Component{
@@ -24,6 +25,13 @@ class Nav extends Component{
     //         this.props.setUser(res.data[0])
     //     })
     // }
+
+    handleLogout = () => {
+        axios.post('/api/logout')
+            .then(res => {
+                this.props.resetUser()
+            })
+    }
 
     render(){
 
@@ -46,7 +54,10 @@ class Nav extends Component{
             </div>
             <div className='logout'>
                 <Link to='/'>
-                    <button className='logout-btn'>Logout</button>
+                    <button 
+                        className='logout-btn'
+                        onClick={this.handleLogout}
+                    >Logout</button>
                 </Link>
             </div>
         </div>
@@ -56,4 +67,4 @@ class Nav extends Component{
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps, {setUser, getUser})(Nav);
+export default connect(mapStateToProps, {setUser, getUser, resetUser})(Nav);
