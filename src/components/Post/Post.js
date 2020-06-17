@@ -11,7 +11,8 @@ class Post extends Component{
             img: '',
             content: '',
             author_id: 0,
-            profile_pic: ''
+            profile_pic: '',
+            isEditing: false
         }
     }
 
@@ -38,6 +39,12 @@ class Post extends Component{
         console.log(this.props)
     }
 
+    toggleEdit = () => {
+        this.setState({
+            isEditing: !this.state.isEditing
+        }, () => console.log(this.state))
+    }
+
     render(){
 
         
@@ -45,7 +52,10 @@ class Post extends Component{
         <div className='current-post-main'>
             <div className='current-post-container'>
                 <div className='post-nav'>
-                <span id='current-post-title'>{this.state.title}</span>
+                    <div>
+                    <span id='current-post-title'>{this.state.title}</span>
+                    <button onClick={this.toggleEdit}>Edit</button>
+                    </div>
                     <div>
                         <span id='post-username'>{this.state.username}</span>
                         <img className='post-img' src={this.state.profile_pic} alt={this.state.title} />
