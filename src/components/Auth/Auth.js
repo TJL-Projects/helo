@@ -72,7 +72,7 @@ class Auth extends Component{
                             />
                         </div>
                         <div className='auth-input'>
-                            <span>Password:</span>
+                            <span>Password: </span>
                             <input 
                                 name='password' 
                                 value={this.state.password} 
