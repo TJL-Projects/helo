@@ -10,7 +10,7 @@ class Post extends Component{
             title: '',
             img: '',
             content: '',
-            author: '',
+            author_id: 0,
             profile_pic: ''
         }
     }
@@ -19,12 +19,23 @@ class Post extends Component{
         this.getSinglePost()
     }
 
-    getSinglePost = () =>{
-        axios.get(`/api/post/${this.props.match.params.post_id}`)
-        .then(res => {
-            const {title, img, content, author_id, profile_pic} = res.data[0]
-            this.setState({title, img, content, author_id, profile_pic})
+    handleDelete = () => {
+        axios.delete(`/api/post/${this.props.match.params.postid}`)
+        .then(() => {
+           this.props.history.push('/dashboard')
         })
+        .catch(err => console.log(err))
+    }
+
+    getSinglePost = () =>{
+        axios.get(`/api/post/${this.props.match.params.postid}`)
+        .then(res => {
+            console.log(res.data)
+            const {title, img, content, username, profile_pic, author_id} = res.data[0]
+
+            this.setState({title, img, content, username, profile_pic, author_id})
+        })
+        console.log(this.props)
     }
 
     render(){
@@ -36,18 +47,26 @@ class Post extends Component{
                 <div className='post-nav'>
                 <span id='current-post-title'>{this.state.title}</span>
                     <div>
-                        <span id='post-username'>username</span>
-                        <span id='post-profile_pic'>profile_pic</span>
+                        <span id='post-username'>{this.state.username}</span>
+                        <img className='post-img' src={this.state.profile_pic} alt={this.state.title} />
                     </div>
                 </div>
                 <div className='content-img-container'>
                     <div id='current-post-img-container'>
-                        img
+                        <img id='current-post-img' src={this.state.img} alt={this.state.title} />
                     </div>
                     <div id='current-post-content'>
-                        content sdfasdf asdfasdfasd dasdfasdf asdfasdfas asdfasdfa asdfasdfasd asdfasdfas adfasdfas asdfasdfa asdfasdfas asdfasdfa asdfasdf afasdfasdf asdfasd fafasdfasdf asdfa sa
+                        {this.state.content}
+                
                     </div>
                 </div>
+                {(this.props.users.user_id === +this.state.author_id)
+                ?(
+                    <button onClick={this.handleDelete}>Delete</button>
+
+                )
+                : null
+                }
             </div>
         </div>
         )

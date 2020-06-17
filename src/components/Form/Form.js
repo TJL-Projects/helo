@@ -45,7 +45,11 @@ class Form extends Component{
                                 />
                         </div>
                         <div className='new-post-img-container'>
-                            <img className='new-post-img' src={this.state.imgInput} alt='no-img-avail' />
+                            <img 
+                            className='new-post-img' 
+                            src={this.state.imgInput}
+                            placeholder=''                            
+                            alt='no-img' />
                         </div>
                         <div className='span-pairing'>
                             <span className='new-post-span'>Image URL: </span>
@@ -54,7 +58,7 @@ class Form extends Component{
                                 value={this.state.imgInput}
                                 onChange={e => this.handleChange(e)}
                                 className='form-input'
-                                />
+                            />
                         </div>
                         <div className='span-pairing'>
                             <span className='new-post-span'>Content: </span>

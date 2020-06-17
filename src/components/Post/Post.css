@@ -23,6 +23,18 @@
     padding: 20px
 }
 
+#current-post-title{
+    font-size: 40px;
+    font-weight: 1000;
+    color: firebrick;
+}
+
+#post-username{
+    position: relative;
+    right: 60px;
+    font-size: 35px;
+}
+
 .content-img-container{
     display: flex;
     justify-content: space-between;
@@ -32,15 +44,25 @@
     padding: 0px 20px;
 }
 
+
+
 #current-post-img-container{
     position: relative;
-    background-color: violet;
+    /* background-color: violet; */
     height: 90%;
     width: 50%;
+}
+
+#current-post-img{
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    margin-right: 10px;
 }
 
 #current-post-content{
     position: absolute;
     left: 50%;
+    margin-left: 10px;
 }
 

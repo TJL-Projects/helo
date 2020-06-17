@@ -105,9 +105,17 @@ module.exports = {
          const db = req.app.get('db')
          const {id} = req.params
 
-        console.log(id)
+        // console.log(id)
 
          let post = await db.post.get_single_post(+id)
          res.status(200).send(post)
+      },
+
+      deletePost: (req, res) => {
+          const db = req.app.get('db')
+          const {id} = req.params
+          
+          db.post.delete_post(+id)
+          res.sendStatus(200)
       }
 }
